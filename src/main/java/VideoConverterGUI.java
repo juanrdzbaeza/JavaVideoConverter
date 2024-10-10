@@ -90,7 +90,7 @@ public class VideoConverterGUI extends JFrame implements ActionListener {
         } else if (osName.contains("linux")) { // Si estamos en Linux el binario para ffmpeg sera el siguiente
             ffmpegPath = "src/main/resources/ffmpeg-7.0.2-amd64-static-linux/ffmpeg";
         } else if (osName.contains("mac")) { // Si estamos en macOS el binario para ffmpeg sera el siguiente
-            ffmpegPath = "src/main/resources/ffmpeg-.../bin/ffmpeg ?¿?¿ "; // Aquí debes proporcionar la ruta correcta para macOS
+            ffmpegPath = "src/main/resources/ffmpeg-7.1-mac/ffmpeg";
         } else {
             throw new RuntimeException("Unsupported operating system: " + osName);
         }
