@@ -60,8 +60,9 @@ public class VideoConverterGUI extends JFrame implements ActionListener {
                     }
                     checkFields();
                 }
-            } else if (button.getText().equals("Convert")) {
-                String ffmpegPath = "src/main/resources/ffmpeg-7.0.2-amd64-static/ffmpeg";
+            }
+            else if (button.getText().equals("Convert")) {
+                String ffmpegPath = getffmpegPath();
                 String inputFile = inputField.getText();
                 String outputFile = outputField.getText();
 
@@ -78,6 +79,23 @@ public class VideoConverterGUI extends JFrame implements ActionListener {
                 }
             }
         }
+    }
+
+    private static String getffmpegPath() {
+        String ffmpegPath;
+        String osName = System.getProperty("os.name").toLowerCase();
+
+        if (osName.contains("windows")) { // Si estamos en Windows el binario para ffmpeg sera el siguiente
+            ffmpegPath = "src/main/resources/ffmpeg-7.1-essentials_build-win/bin/ffmpeg.exe";
+        } else if (osName.contains("linux")) { // Si estamos en Linux el binario para ffmpeg sera el siguiente
+            ffmpegPath = "src/main/resources/ffmpeg-7.0.2-amd64-static-linux/ffmpeg";
+        } else if (osName.contains("mac")) { // Si estamos en macOS el binario para ffmpeg sera el siguiente
+            ffmpegPath = "src/main/resources/ffmpeg-.../bin/ffmpeg ?¿?¿ "; // Aquí debes proporcionar la ruta correcta para macOS
+        } else {
+            throw new RuntimeException("Unsupported operating system: " + osName);
+        }
+
+        return ffmpegPath;
     }
 
     void checkFields() {
